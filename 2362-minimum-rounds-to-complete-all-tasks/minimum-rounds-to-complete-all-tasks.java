@@ -9,7 +9,7 @@ class Solution {
         int round=0;
         // System.out.println(mp);
         for(int i:mp.values()){
-            System.out.print(i);
+            // System.out.print(i);
            if(i==1) return -1;
     
             // if(i%3==0) round+=i/3;
