@@ -1,9 +1,19 @@
 class Solution {
     public int singleNonDuplicate(int[] nums) {
-      Set<Integer> st=new HashSet<>();
-      for(int i=0;i<nums.length-1;i++){
-        if(st.add(nums[i]) && st.add(nums[i+1])) return nums[i];
-      }  
-      return nums[nums.length-1];
+        int l=0;
+        int r=nums.length-1;
+        while(l<r){
+            int m=l+(r-l)/2;
+            // pari is {even,odd} is ery time pari nor(odd,even)
+            // so check even ood if m is odd change it to even by m-1;
+            if(m%2==1){
+                m--;
+            }
+            if(nums[m]==nums[m+1]){
+                l=m+2;
+            }
+            else r=m;
+        }
+        return nums[l];
     }
 }
