@@ -1,16 +1,17 @@
 class Solution {
     public int minSteps(String s, String t) {
-       int arr[]=new int[26];
-       for(char c:s.toCharArray()){
-        arr[c-'a']++;
-       } 
-       int rs=0;
-       for(char c:t.toCharArray()){
-        arr[c-'a']--;
-       }
-       for(int i=0;i<26;i++){
-        if(arr[i]>0) rs+=arr[i];
-       }
-       return rs;
+        int frq[]=new int[26];
+        // int tarr[]=new int[26];
+        for(char c:s.toCharArray()){
+            frq[c-'a']++;
+        }
+        for(char c:t.toCharArray()){
+            frq[c-'a']--;
+        }
+        int res=0;
+        for(int i=0;i<26;i++){
+            if(frq[i]>0) res+=frq[i];
+        }
+        return res;
     }
 }
