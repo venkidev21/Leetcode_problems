@@ -16,9 +16,9 @@ class Solution {
             i++;
         }
         // System.out.println(mp.toString());
-        for(Character c:mp.keySet()){
-            System.out.println(c+" "+Arrays.toString(mp.get(c)));
-        }
+        // for(Character c:mp.keySet()){
+        //     System.out.println(c+" "+Arrays.toString(mp.get(c)));
+        // }
         PriorityQueue<Map.Entry<Character,int[]>> pq=new PriorityQueue<>((a,b)->{
             if(a.getValue()[1]==b.getValue()[1]) return a.getValue()[0]-b.getValue()[0];
             return b.getValue()[1]-a.getValue()[1];
