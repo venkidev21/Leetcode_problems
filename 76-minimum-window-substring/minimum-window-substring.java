@@ -1,40 +1,41 @@
 class Solution {
     public String minWindow(String s, String t) {
-        int arr[]=new int[256];
-        int ml=0;
-        int rl=s.length();
-        String rs=s+s;
-        int l=0;
-        if(s.length()<t.length()) return "";
+        int frq[]=new int[256];
+        int tfrq[]=new int[256];
         for(char c:t.toCharArray()){
-            arr[c]++;
+            tfrq[c-'0']++;
+        }
+        int l=0;
+        if(s.equals(t)) return s;
+        if(s.length()<t.length()) return "";
+        int min=Integer.MAX_VALUE;
+        String rs="";
+
+        for(int r=0;r<s.length();r++){
+            char c=s.charAt(r);
+            frq[c-'0']++;
+            while(cheack(frq,tfrq)){
+                if(min>r-l+1){
+                min=r-l+1;
+                rs=s.substring(l,r+1);
+                }
+                frq[s.charAt(l)-'0']--;
+                l++;
+                
+            }
+            //System.out.println(rs);
         }
 
-        int frq[]=new int[256];
-        int r=0;
-        while(r<s.length()){
-            frq[s.charAt(r)]++;
-            r++;
-            while(chiech(arr,frq)){
-                 String sub=s.substring(l,r);
-                if(rs.length()>=sub.length()){
-                    rs=sub;
-                }
-                 // System.out.println(sub);
-                frq[s.charAt(l)]--;
-                l++;
-  
-            }
-  
-        }
-        // if(ml==-1 || rl==s.length()+1) return "";
-        if(rs.length()>s.length()) return "";
+            
+        
         return rs;
 
+
     }
-    boolean chiech(int arr1[],int arr2[]){
+
+    boolean cheack(int[] arr,int[] t){
         for(int i=0;i<256;i++){
-            if(arr1[i]!=0 && (arr1[i]>arr2[i])) return false;
+            if(t[i]!=0 && arr[i]<t[i]) return false;
         }
         return true;
     }
